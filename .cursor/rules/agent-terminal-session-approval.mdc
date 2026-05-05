@@ -1,0 +1,24 @@
+---
+description: >-
+  Terminal approval UX — clarify IDE vs rules; after first approval in a chat,
+  avoid redundant in-chat permission prompts (IDE may still prompt per settings).
+alwaysApply: true
+---
+
+# Agent terminal approval（同一会话）
+
+## 重要：谁能关掉「每次都要点同意」
+
+- **是否弹出终端/命令行批准框**，由 **Cursor 客户端** 决定（**Settings → Cursor Settings → Agents → Auto-Run**），**不是**由本仓库的 `.cursor/rules` 控制。
+- 若当前为 **Ask Every Time**，则**每个** Shell 工具调用都可能要求你在 UI 里点一次同意；**无法**仅靠一条「规则」改成「整段对话只问第一次」。
+- 若希望 Agent **在可用时自动跑命令**（少弹窗），请改用 **Run in Sandbox**（在沙盒中自动执行，仍受沙盒与允许列表约束）。文档：[Terminal / Auto-run](https://cursor.com/docs/agent/tools/terminal.md)。**Run Everything** 会跳过批准，风险更高，请自行权衡。
+- Windows 上沙盒依赖 **WSL2**；若环境不满足，可能回退为**运行前逐项征求同意**（见同一文档的 Platform requirements）。
+
+## 本规则对 Agent 的约定（对话内行为）
+
+在同一 **聊天会话** 中，一旦用户已经在本对话里**批准过至少一次**终端命令（或已明确说过「可以执行命令 / 同意跑终端」等同类许可）：
+
+1. **不要**在后续步骤里再用自然语言重复问「是否可以执行某某命令」；需要跑命令时**直接调用**终端/Shell 相关工具（用户是否仍要点 IDE 上的批准，取决于上面的 Auto-Run 设置）。
+2. 若某一步**确实**需要新的用户决策（例如破坏性操作、涉及密钥或生产环境），再单独说明原因并提问，而不是对每条普通构建/查询类命令重复征询。
+
+这样可减少「聊天里问一遍 + IDE 再弹一遍」的双重确认感；**不能**替代你在 Cursor 里选择合适的 Auto-Run 模式。

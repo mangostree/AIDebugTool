@@ -1,0 +1,24 @@
+---
+description: C# — always use braces on if/else/for/foreach bodies
+globs: "**/*.{cs,csx}"
+alwaysApply: true
+---
+
+# C# control flow braces
+
+In C# (including Unity `Editor/` and `Modules/`), **never** use single-statement `if` / `else` / `for` / `foreach` / `while` **without** curly braces.
+
+- Even when the body is **one line** (e.g. `return;`, `continue;`, one assignment), wrap it in `{ }`.
+- Applies to new code and edits in this repo; match this style when touching existing blocks nearby.
+
+```csharp
+// Bad
+if (x == null)
+    return;
+
+// Good
+if (x == null)
+{
+    return;
+}
+```

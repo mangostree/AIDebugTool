@@ -1,0 +1,33 @@
+---
+description: Demo project context for Cursor-assisted Unity development
+alwaysApply: true
+---
+
+# AIDebugTool Demo Context
+
+This Unity project is a demo for presenting Cursor-assisted Unity development. The agent should treat the work as a tooling and workflow demonstration, not as a gameplay-content-first project.
+
+Core goals:
+
+- Show how Cursor Agent cooperates with Unity Editor and Perforce.
+- Prefer repeatable project skills over ad hoc commands.
+- Keep steps visible: briefly explain what automation is being run and why.
+- Keep edits scoped, easy to demonstrate, and compatible with the existing project rules.
+
+Project skills:
+
+- Use `.cursor/skills/p4-edit-add-before-modify` before editing or adding files in the Perforce workspace. Reuse the user-provided pending CL for the current task when available; recent demo CL is `107`.
+- Use `.cursor/skills/unity-proactive-debug` for Unity Editor bridge checks, script refresh/compile verification, Editor log scanning, and Play mode automation.
+
+Unity bridge context:
+
+- Bridge script path: `Assets/Scripts/Editor/CursorEditorDebugBridge.cs`.
+- Bridge address: `127.0.0.1:8742`.
+- After editing `Assets/**/*.cs`, run `refresh_wait`, scan `Editor.log`, then `ping`.
+- If the bridge script was just created, Unity must compile it before TCP commands can work.
+
+Perforce context:
+
+- Project root: `D:\unityproj\AIDebugTool`.
+- Observed matching P4 client: `zhaoxiaoyuan_AIDebugTool`.
+- Always verify P4 connection/client state when opening files, especially if the shell default `P4CLIENT` points elsewhere.
