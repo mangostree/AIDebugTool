@@ -1,6 +1,6 @@
 # AIDebugTool
 
-这是一个用于展示 Cursor 协同 Unity 开发工作流的 Demo 工程。重点不是游戏内容本身，而是演示 Cursor Agent 如何结合项目内的 `.cursor/skills`，完成 Perforce 文件管理、Unity Editor 编译验证、Play 模式控制和日志诊断等自动化协作任务。
+这是一个用于展示 Cursor 协同 Unity 开发工作流的 Demo 工程。重点不是游戏内容本身，而是演示 Cursor Agent 如何结合项目内的 `.cursor/skills`，完成 Perforce 文件管理、Unity Editor 编译验证、Play 模式控制、日志诊断以及 Visual Studio 断点调试等自动化协作任务。
 
 ## 1. 当前 Skills
 
